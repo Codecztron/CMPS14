@@ -6,17 +6,17 @@ CMPS14::CMPS14(int i2cAddress) {
 }
 
 void CMPS14::begin() {
-    Wire.begin();
+    Wire1.begin();
 }
 
 int CMPS14::readRawAngle() {
-    Wire.beginTransmission(address);
-    Wire.write(0x02);
-    Wire.endTransmission();
+    Wire1.beginTransmission(address);
+    Wire1.write(0x02);
+    Wire1.endTransmission();
 
-    Wire.requestFrom(address, 2);
+    Wire1.requestFrom(address, 2);
 
-    if (Wire.available() >= 2) {
+    if (Wire1.available() >= 2) {
         uint8_t high_byte = Wire.read();
         uint8_t low_byte = Wire.read();
         return ((high_byte << 8) | low_byte) / 10.0;
